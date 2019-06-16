@@ -1,0 +1,32 @@
+string Solution::longestPalindrome(string s) {
+     
+        int start = 0, len = 1;
+
+        for (int i = 1; i < s.size(); i++)
+        {
+
+            if (i - len >= 1) {
+                string sub_s = s.substr(i - len - 1, len + 2);
+                reverse(sub_s.begin(), sub_s.end());
+                if(s.substr(i - len - 1, len + 2) == sub_s)
+                {
+                    start = i - len - 1;
+                    len += 2;
+                    continue;
+                }
+            }
+
+            if (i - len >= 0) {
+                string sub_s = s.substr(i - len, len + 1);
+                reverse(sub_s.begin(), sub_s.end());
+                if (s.substr(i - len, len + 1) == sub_s)
+                {
+                    start = i - len;
+                    len += 1;
+                }
+            }
+        }
+
+        return s.substr(start, len);
+        
+    }
